@@ -13,10 +13,4 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByTitle(String title);
 
-    // Spring Data автоматически создаст методы:
-// - findAll() — получить все книги
-// - findById(id) — найти книгу по ID
-// - save(book) — сохранить книгу
-// - deleteById(id) — удалить книгу
-
 }

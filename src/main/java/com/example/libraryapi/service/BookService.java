@@ -10,30 +10,38 @@ import java.util.Optional;
 
 @Service
 public class BookService {
+
     @Autowired
     private BookRepository bookRepository;
-    // Получить все книги
+
+    // Get all books
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
-    // Найти книгу по ID
+
+    // Find a book by ID
     public Optional<Book> getBookById(Long id) {
         return bookRepository.findById(id);
     }
-    // Создать новую книгу
+
+    // Create a new book
     public Book createBook(Book book) {
         return bookRepository.save(book);
     }
-    // Удалить книгу
+
+    // Delete a book by ID
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
-    //Найти книгу по автору
+
+    // Find books by author
     public List<Book> getBookByAuthor(String author) {
         return bookRepository.findByAuthor(author);
     }
-    //Найти книгу по названию
+
+    // Find books by title
     public List<Book> getBookByTitle(String title) {
         return bookRepository.findByTitle(title);
     }
+
 }

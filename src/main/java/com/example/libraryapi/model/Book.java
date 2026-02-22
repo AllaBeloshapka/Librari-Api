@@ -27,11 +27,10 @@ public class Book {
     @Column(name = "description")
     private String contents;
 
-    // Конструктор по умолчанию (обязателен для JPA)
+    // Default constructor (required for JPA)
     public Book() {
     }
-
-    // Конструктор с параметрами
+    //constructor
     public Book(String title, String author, Integer year, String contents) {
         this.title = title;
         this.author = author;

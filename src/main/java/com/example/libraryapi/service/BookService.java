@@ -8,38 +8,55 @@ import com.example.libraryapi.model.Book;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service layer for {@link Book} operations.
+ *
+ * Encapsulates business logic and delegates persistence to {@link BookRepository}.
+ */
 @Service
 public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
 
-    // Get all books
+    /**
+     * Returns all books.
+     */
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
-    // Find a book by ID
+    /**
+     * Returns a book by id.
+     */
     public Optional<Book> getBookById(Long id) {
         return bookRepository.findById(id);
     }
 
-    // Create a new book
+    /**
+     * Creates a new book.
+     */
     public Book createBook(Book book) {
         return bookRepository.save(book);
     }
 
-    // Delete a book by ID
+    /**
+     * Deletes a book by id.
+     */
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 
-    // Find books by author
+    /**
+     * Returns all books that match the given author.
+     */
     public List<Book> getBookByAuthor(String author) {
         return bookRepository.findByAuthor(author);
     }
 
-    // Find books by title
+    /**
+     * Returns all books that match the given title.
+     */
     public List<Book> getBookByTitle(String title) {
         return bookRepository.findByTitle(title);
     }

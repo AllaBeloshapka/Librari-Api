@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REST controller for managing {@link Book} resources.
+ *
+ * Base path: {@code /api/books}
+ */
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -19,13 +24,21 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    // GET /api/books — retrieve all books
+    /**
+     * Returns all books.
+     *
+     * GET {@code /api/books}
+     */
     @GetMapping
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
-    // GET /api/books/{id} — retrieve a book by ID
+    /**
+     * Returns a single book by its id.
+     *
+     * GET {@code /api/books/{id}}
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Optional<Book> book = bookService.getBookById(id);
@@ -36,26 +49,42 @@ public class BookController {
         }
     }
 
-    // Search books by author
+    /**
+     * Searches books by author.
+     *
+     * GET {@code /api/books/search/author?author=...}
+     */
     @GetMapping("/search/author")
     public List<Book> searchByAuthor(@RequestParam String author) {
         return bookService.getBookByAuthor(author);
     }
 
-    // Search books by title
+    /**
+     * Searches books by title.
+     *
+     * GET {@code /api/books/search/title?title=...}
+     */
     @GetMapping("/search/title")
     public List<Book> searchByTitle(@RequestParam String title) {
         return bookService.getBookByTitle(title);
     }
 
-    // POST /api/books — create a new book
+    /**
+     * Creates a new book.
+     *
+     * POST {@code /api/books}
+     */
     @PostMapping
     public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
         Book createdBook = bookService.createBook(book);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
     }
 
-    // DELETE /api/books/{id} — delete a book by ID
+    /**
+     * Deletes a book by id.
+     *
+     * DELETE {@code /api/books/{id}}
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         Optional<Book> book = bookService.getBookById(id);

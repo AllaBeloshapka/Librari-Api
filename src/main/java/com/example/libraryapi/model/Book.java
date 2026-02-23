@@ -3,6 +3,9 @@ package com.example.libraryapi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Book entity persisted in the {@code books} table.
+ */
 @Entity
 @Table(name = "books")
 
@@ -27,17 +30,23 @@ public class Book {
     @Column(name = "description")
     private String contents;
 
-    // Default constructor (required for JPA)
+    /**
+     * Default constructor (required by JPA).
+     */
     public Book() {
     }
-    //constructor
+
+    /**
+     * Convenience constructor.
+     */
     public Book(String title, String author, Integer year, String contents) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.contents = contents;
     }
-    // Getters и Setters
+
+    // Getters and setters
 
     public String getContents() {
         return contents;
